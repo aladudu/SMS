@@ -1,0 +1,117 @@
+注册接口
+
+    接口地址：/api/register
+    请求的方式：post
+
+    参数说明
+        username	Y	string	   当前用户的用户名
+        password	Y	string	   当前用户的密码
+
+    返回结果
+        {
+            status:true,
+            info:"注册成功"
+        }
+
+        {
+            status:false,
+            info:"注册失败"
+        }
+        
+
+登陆接口
+
+    接口地址：/api/login
+    请求的方式：post
+
+    参数说明
+        username	Y	string	   当前用户的用户名
+        password	Y	string	   当前用户的密码
+
+    返回结果
+        {
+            status:true,
+            info:"登陆成功"
+        }
+
+        {
+            status:false,
+            info:"原因"
+        }
+
+
+
+职位管理
+    职位名称
+    薪资
+    要求
+    公司名称
+    公司logo
+    
+
+
+添加职位
+    接口地址:/job/addjob
+    请求的方式：post
+
+ 参数说明
+        jonname	    Y	string	   职位名称
+        jobprice	Y	string	   薪资
+        jobask      Y   string     要求
+        companyname Y   string     公司名称
+        companylogo Y    files     公司logo
+
+
+//获取职位
+    请求地址：/job/getjob
+    请求的方式：get
+
+
+删除职位
+    接口地址:/job/deljob
+    请求的方式：get
+
+ 参数说明
+        id	    Y	string	   职位id
+
+
+
+
+
+
+
+分页
+    1 2 3 4 5 6 7  页码数     数据的总条数/每页显示的数据的数量 = 页码数
+
+    每页显示的条目数  固定   3 条   limit
+
+
+
+    20条数据
+
+    1   0 - 2
+    2   3 - 5
+    3   6 - 8
+    4   9 - 11
+
+
+    
+    点击获取数据的时候  你要告诉后端你现在是第几页  每页显示多少条数据
+
+    ajax(
+        type:"get"
+        url:"getList?page=1&limit=3"
+    )
+
+
+    后端
+        let {page,limit} = res.query
+
+        (page-1)*limit;
+
+        db.job.find().skip(?).limit(limit).then((res)=>{
+            cb(res);
+        })
+
+
+       

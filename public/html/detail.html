@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/common/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../js/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/detail/detail.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">
+            <img src="http://jx.1000phone.net/Public/assets/css/images/logo.png?1552286991" />
+        </div>
+        <div class="info">
+            <p id="js_userName"></p>
+            <p id="js_logout" class="logout">退出</p>
+        </div>
+    </div>
+    <!-- tabBar -->
+    <div class="container_detail">
+        <div class="tabbar">
+            <ul>
+                <li class="active">系统首页</li>
+                <li>职位列表</li>
+                <li>职位管理</li>
+            </ul>
+        </div>
+        <div class="content">
+
+            <!-- <div class="list">
+                <div class="list_job">
+                   <div class="job_des">
+                        <div class="job_name">前端开发工程师</div>
+                        <div class="job_price">8000</div>
+                        <div class="job_ex">经验3-5年 本科</div>
+                   </div>
+                   <div class="com_des">
+                       <div class="company_logo">
+                           <img src="https://www.lgstatic.com/thumbnail_100x100/i/image3/M00/28/02/Cgq2xlqa2jWAGAnMAAArW2y3MsY901.jpg"/>
+                       </div>
+                       <div class="company_name">北京阿里科技有限公司</div>
+                   </div>
+                   <div class="operation">
+                       <button class="btn btn-danger">删除</button>
+                       <button class="btn btn-info">修改</button>
+                   </div>
+                </div>
+            </div> -->
+            <div id="addJob"></div>
+            <div id="jobList">
+                 <img class="pic" src="data:image/jpeg;base64,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" />
+            </div>
+            <div id="page"></div>
+        </div>
+        <!-- 模块框 -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="jobModel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">请修改内容</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="job_modify_name">职位名称</label>
+                                <input type="text" class="form-control" id="job_modify_name" placeholder="请输入职位名称">
+                            </div>
+                            <div class="form-group">
+                                <label for="job_modify_price">薪资</label>
+                                <input type="text" class="form-control" id="job_modify_price" placeholder="薪资范围">
+                            </div>
+                            <div class="form-group">
+                                <label for="job_modify_ask">要求</label>
+                                <input type="text" class="form-control" id="job_modify_ask" placeholder="招聘要求">
+                            </div>
+                            <div class="form-group">
+                                <label for="company_modify_name">公司名称</label>
+                                <input type="text" class="form-control" id="company_modify_name" placeholder="请输入公司名称">
+                            </div>
+                            <div class="form-group">
+                                <label for="logo_modify">上传公司logo</label>
+                                <input type="file" id="logo_modify" multiple>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="modify_btn" data-dismiss="modal">修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</body>
+
+</html>
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/js-cookie/2.2.0/js.cookie.min.js"></script>
+<script src="../js/lib/layui/layui.js"></script>
+<script src="../js/js/common/auth.js"></script>
+<script src="../js/js/detail/logout.js"></script>
+<script src="../js/js/detail/layPage.js"></script>
+<script src="../js/js/detail/joblist.js"></script>
+<script src="../js/js/detail/tabbar.js"></script>
+<script src="../js/js/detail/job.js"></script>
+<script src="../js/js/detail/modify.js"></script>
